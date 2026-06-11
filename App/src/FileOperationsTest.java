@@ -4,6 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public class FileOperationsTest {
 
@@ -17,5 +21,26 @@ public class FileOperationsTest {
         Assert.assertTrue(file.exists());
 
         file.delete();
+    }
+    @Test
+    public void givenEmployees_WhenWrittenToFile_ShouldMatchEntries()
+            throws Exception {
+
+        List<EmployeePayrollData> employees =
+                Arrays.asList(
+                        new EmployeePayrollData(1,"Ram",25000),
+                        new EmployeePayrollData(2,"Shyam",30000)
+                );
+
+        EmployeePayrollFileIO io =
+                new EmployeePayrollFileIO();
+
+        io.writeData(employees);
+
+        long count =
+                Files.lines(Paths.get("employee-payroll.txt"))
+                        .count();
+
+        Assert.assertEquals(2,count);
     }
 }
