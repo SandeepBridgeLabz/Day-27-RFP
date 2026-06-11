@@ -52,4 +52,13 @@ public class FileOperationsTest {
 
         Assert.assertEquals(2, entries);
     }
+    @Test
+    public void givenPayrollFile_WhenRead_ShouldReturnEmployees()
+            throws Exception {
+
+        List<String> data =
+                PayrollAnalysis.readData();
+
+        Assert.assertEquals(2, data.size());
+    }
 }
