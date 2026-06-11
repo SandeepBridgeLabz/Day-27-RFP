@@ -43,4 +43,13 @@ public class FileOperationsTest {
 
         Assert.assertEquals(2,count);
     }
+    @Test
+    public void givenPayrollFile_WhenCounted_ShouldReturn2()
+            throws Exception {
+
+        long entries =
+                PayrollPrinter.countEntries();
+
+        Assert.assertEquals(2, entries);
+    }
 }
